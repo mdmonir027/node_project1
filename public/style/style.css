@@ -1,0 +1,9 @@
+footer {
+  padding: 25px 0;
+  background: #343a40;
+  color: white;
+  text-align: center;
+}
+.contentArea {
+  min-height: 600px;
+}
