@@ -100,6 +100,7 @@ controller.signupPost = async (req, res, next) => {
     res.redirect('/auth/login');
   } catch (e) {
     console.log(e);
+    next(e);
   }
 };
 controller.logout = (req, res, next) => {

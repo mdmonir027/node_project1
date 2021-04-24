@@ -1,5 +1,6 @@
 const authRoutes = require('../routes/authRoutes');
 const dashboarRoutes = require('../routes/dashboadRoutes');
+const playRoutes = require('../playground/play');
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: '/dashboard',
     controller: dashboarRoutes,
+  },
+  {
+    path: '/play',
+    controller: playRoutes,
   },
   {
     path: '/',
@@ -22,6 +27,10 @@ const routes = [
 
 module.exports = (app) => {
   routes.forEach((r) => {
-    app.use(r.path, r.controller);
+    if (r.path === '/') {
+      app.get(r.path, r.controller);
+    } else {
+      app.use(r.path, r.controller);
+    }
   });
 };

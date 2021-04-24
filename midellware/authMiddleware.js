@@ -8,8 +8,7 @@ middleware.bindUserWithRequest = () => {
     if (!req.session.isLoggedIn) return next();
 
     try {
-      const user = await User.findById(req.session.user._id);
-      req.user = user;
+      req.user = await User.findById(req.session.user._id);
       next();
     } catch (error) {
       console.log(error);
