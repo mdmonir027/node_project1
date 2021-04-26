@@ -1,148 +1,119 @@
 <%- include('../../partials/header.ejs') %>
 
-<link rel="stylesheet" href="assets/cropie/croppie.css">
+  <link rel="stylesheet" href="assets/cropie/croppie.css">
 
-    <h2 class="text-center">Create your profile </h2>
+  <h2 class="text-center">Create your profile </h2>
 
-   
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card card-body my-2">
-                <div class="profilePic">
-                    <img 
-                        src="<%= user.profilePic %>" 
-                        alt="Profile Picture" 
-                        id="profilePic" 
-                        class="img-rounded img-fluid"
-                        style="width: 300px;"
-                    >
-                    <form 
-                        action="/uploads/profilePics" 
-                        method="POST" 
-                        id='profilePicForm'
-                    >
-                    <input type="file" name="profilePic" id="profileInput" class="form-control-file">
-                    <button 
-                        type="button" 
-                        style="display:<%= user.profilePic.includes('default.png') ? 'none': 'block' %>" 
-                        class="btn btn-danger btn-sm mt-2"
-                        id='removeProfilePic'
-                    >
-                        Remove Profile Pic
-                    </button>
-                    </form>
-                </div>
-                
-                <div class="my-3">
-                    <form action="/dashoboard/createProfile" method="post">
-                    
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="name" 
-                                name="name"
-                                placeholder="Enter your full name"
-                            >
-                          </div>
-                        <div class="form-group">
-                            <label for="name">Email Address</label>
-                            <input 
-                                type="email" 
-                                class="form-control" 
-                                value="<%=user.email  %>"
-                                disabled
-                            >
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Short Title</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="title" 
-                                name="tile"
-                                placeholder="Enter a short title"
-                            >
-                        </div>
-                        <div class="form-group">
-                            <label for="bio">Short Bio</label>
-                            <textarea name="bio" id="bio" class="form-control" cols="30" rows="3" placeholder="Enter a short bio"></textarea>
-                        </div>
-                        <h2 class="my-3">Your Social Links</h2>
-                        <div class="mb-3">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fab fa-facebook"></i>
-                                </span>
-                              </div>
-                              <input 
-                                type="text" 
-                                class="form-control" 
-                                placeholder="Facebok link"
-                                required
-                              >
-                            </div>
-                          </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fab fa-twitter"></i>
-                                </span>
-                              </div>
-                              <input 
-                                type="text" 
-                                class="form-control"
-                                placeholder="Twitter link"
-                                required
-                              >
-                            </div>
-                          </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fab fa-instagram"></i>
-                                </span>
-                              </div>
-                              <input 
-                                type="text" 
-                                class="form-control" 
-                                placeholder="Instagram link"
-                                required
-                              >
-                            </div>
-                          </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" >
-                                    <i class="fab fa-github"></i>
-                                </span>
-                              </div>
-                              <input 
-                                type="text" 
-                                class="form-control" 
-                                placeholder="Github link" 
-                                required
-                              >
-                            </div>
-                          </div>
 
-                          <button type="submit" class="btn btn-primary btn-sm">Create Profile</button>
-                    </form>
-                </div>
+  <div class="row justify-content-center">
+    <form action="/dashoboard/createProfile" method="post"></form>
+    <div class="col-md-9">
+      
+        <div class="card card-body my-2">
+
+          <div class="row">
+            <div class="col-md-8">
+
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name">
+              </div>
+              <div class="form-group">
+                <label for="name">Email Address</label>
+                <input type="email" class="form-control" value="<%=user.email  %>" disabled>
+              </div>
+              <div class="form-group">
+                <label for="title">Short Title</label>
+                <input type="text" class="form-control" id="title" name="tile" placeholder="Enter a short title">
+              </div>
+              <div class="form-group">
+                <label for="bio">Short Bio</label>
+                <textarea name="bio" id="bio" class="form-control" cols="30" rows="3"
+                  placeholder="Enter a short bio"></textarea>
+              </div>
 
             </div>
+            <div class="col-md-4">
+              <div class="profilePic card mt-4">
+                <div class="card-body">
+                  <img src="<%= user.profilePic %>" alt="Profile Picture" id="profilePic" class="img-rounded img-fluid"
+                    style="width: 400px;">
+                </div>
+
+                <form action="/uploads/profilePics" method="POST" id='profilePicForm' class="card-footer p-0 ">
+                  <input type="file" style="display: none;" name="profilePic" id="profileInput"
+                    class="form-control-file">
+                  <button class="btn btn-block btn-primary btn-sm" type="button">Change Profile Picture</button>
+                  <button type="button" style="display:<%= user.profilePic.includes('default.png') ? 'none': 'block' %>"
+                    class="btn btn-danger btn-sm mt-2" id='removeProfilePic'>
+                    Remove Profile Pic
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="my-3">
+
+            <h2 class="my-3">Your Social Links</h2>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-facebook"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Facebok link" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Twitter link" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-instagram"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Instagram link" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-github"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Github link" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Create Profile</button>
+          </div>
+
         </div>
+     
+
     </div>
+  </form>
+  </div>
 
-<%- include('../../partials/footer.ejs') %>
+  <%- include('../../partials/footer.ejs') %>
 
-<script src="/assets/cropie/croppie.js"></script>
-<script src="/scripts/createProfile.js"></script>
+    <script src="/assets/cropie/croppie.js"></script>
+    <script src="/scripts/createProfile.js"></script>
 
-</body>
-</html>
+    </body>
+
+    </html>
