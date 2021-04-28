@@ -4,114 +4,140 @@
 
   <h2 class="text-center">Create your profile </h2>
 
+  <form action="/dashboard/create-profile" method="post">
+    <div class="row justify-content-center">
 
-  <div class="row justify-content-center">
-    <form action="/dashoboard/createProfile" method="post"></form>
-    <div class="col-md-9">
+      <div class="col-md-9">
 
-      <div class="card card-body my-2">
+        <div class="card card-body my-2">
 
-        <div class="row">
-          <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-8">
 
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name">
-            </div>
-            <div class="form-group">
-              <label for="name">Email Address</label>
-              <input type="email" class="form-control" value="<%=user.email  %>" disabled>
-            </div>
-            <div class="form-group">
-              <label for="title">Short Title</label>
-              <input type="text" class="form-control" id="title" name="tile" placeholder="Enter a short title">
-            </div>
-            <div class="form-group">
-              <label for="bio">Short Bio</label>
-              <textarea name="bio" id="bio" class="form-control" cols="30" rows="3"
-                placeholder="Enter a short bio"></textarea>
-            </div>
-
-          </div>
-          <div class="col-md-4">
-            <div class="profilePic card mt-4">
-              <div class="card-body">
-                <img src="<%= user.profilePic %>" alt="Profile Picture" id="profilePic" class="img-rounded img-fluid"
-                  style="width: 400px;">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control <%= errors.name ? 'is-invalid': ''  %> " id="name" name="name"
+                  placeholder="Enter your full name">
+                <div class="invalid-feedback">
+                  <%= errors.name && errors.name %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Email Address</label>
+                <input type="email" class="form-control" value="<%=user.email  %>" disabled>
+              </div>
+              <div class="form-group">
+                <label for="title">Short Title</label>
+                <input type="text" class="form-control <%= errors.title ? 'is-invalid': ''  %> " id="title" name="title"
+                  placeholder="Enter a short title">
+                <div class="invalid-feedback">
+                  <%= errors.title && errors.title %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="bio">Short Bio</label>
+                <textarea name="bio" id="bio" class="form-control <%= errors.bio ? 'is-invalid': ''  %> " cols="30"
+                  rows="3" placeholder="Enter a short bio"></textarea>
+                <div class="invalid-feedback">
+                  <%= errors.bio && errors.bio %>
+                </div>
               </div>
 
-              <form action="/uploads/profilePics" method="POST" id='profilePicForm' class="card-footer p-0 ">
-                <input type="file" style="display: none;" name="profilePic" id="profilePicFile"
-                  class="form-control-file">
-                <label for="profilePicFile" class="btn btn-block btn-primary btn-sm" id="changeProfilePicButton">Change
-                  Profile Picture</label>
-                
+            </div>
+            <div class="col-md-4">
+              <div class="profilePic card mt-4">
+                <div class="card-body">
+                  <img src="<%= user.profilePic %>" alt="Profile Picture" id="profilePic" class="img-rounded img-fluid"
+                    style="width: 400px;">
+                </div>
 
-                <button type="button" style="display:<%= user.profilePic.includes('default.png') ? 'none': 'block' %>"
-                  class="btn btn-danger btn-sm btn-block mt-2" id='removeProfilePic'>
-                  Remove Profile Pic
-                </button>
+                <form action="/uploads/profilePics" method="POST" id='profilePicForm' class="card-footer p-0 ">
+                  <input type="file" style="display: none;" name="profilePic" id="profilePicFile"
+                    class="form-control-file">
+                  <label for="profilePicFile" class="btn btn-block btn-primary btn-sm"
+                    id="changeProfilePicButton">Change
+                    Profile Picture</label>
 
-              </form>
+
+                  <button type="button" style="display:<%= user.profilePic.includes('default.png') ? 'none': 'block' %>"
+                    class="btn btn-danger btn-sm btn-block mt-2" id='removeProfilePic'>
+                    Remove Profile Pic
+                  </button>
+
+                </form>
+              </div>
             </div>
           </div>
+          <div class="my-3">
+
+            <h2 class="my-3">Your Social Links</h2>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-link"></i>
+                  </span>
+                </div>
+                <input type="url" class="form-control <%= errors.website ? 'is-invalid': ''  %> " name="website"
+                  placeholder="Website link">
+                <div class="invalid-feedback">
+                  <%= errors.website && errors.website%>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-facebook"></i>
+                  </span>
+                </div>
+                <input type="url" class="form-control <%= errors.facebook ? 'is-invalid': ''  %> " name="facebook"
+                  placeholder="Facebok link">
+                <div class="invalid-feedback">
+                  <%= errors.facebook && errors.facebook %>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                </div>
+                <input type="url" class="form-control <%= errors.twitter ? 'is-invalid': ''  %> " name="twitter"
+                  placeholder="Twitter link">
+                <div class="invalid-feedback">
+                  <%= errors.twitter && errors.twitter %>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fab fa-github"></i>
+                  </span>
+                </div>
+                <input type="url" class="form-control <%= errors.github ? 'is-invalid': ''  %> " name="github"
+                  placeholder="Github link">
+                <div class="invalid-feedback">
+                  <%= errors.github && errors.github %>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Create Profile</button>
+          </div>
+
         </div>
 
-
-
-        <div class="my-3">
-
-          <h2 class="my-3">Your Social Links</h2>
-          <div class="mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fab fa-facebook"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Facebok link" required>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fab fa-twitter"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Twitter link" required>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fab fa-instagram"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Instagram link" required>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fab fa-github"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Github link" required>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-sm">Create Profile</button>
-        </div>
 
       </div>
 
-
     </div>
-    </form>
-  </div>
+  </form>
 
   <div class="modal fade " id="crop-modal" tabindex="-1" role="dialog" aria-hidden="true"
     aria-labelledby="exampleModalLabel">

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const profileValidation = require('../validator/dashboard/profileValidator');
 const {
   dashboard,
   createProfile,
@@ -11,9 +12,14 @@ const { isAuthenticated } = require('../midellware/authMiddleware');
 router.get('/', isAuthenticated, dashboard);
 
 router.get('/create-profile', isAuthenticated, createProfile);
-router.post('/create-profile', isAuthenticated, storeProfile);
+router.post(
+  '/create-profile',
+  isAuthenticated,
+  profileValidation,
+  storeProfile
+);
 
 router.get('/edit-profile', isAuthenticated, editProfile);
-router.post('/edit-profile', isAuthenticated, updateProfile);
+router.post('/edit-profile', isAuthenticated, profileValidation, updateProfile);
 
 module.exports = router;

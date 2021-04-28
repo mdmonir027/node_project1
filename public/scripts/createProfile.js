@@ -40,9 +40,6 @@ window.onload = function () {
 
   $('#cancel-croping').on('click', function () {
     $('#crop-modal').modal('hide');
-    // setTimeout(() => {
-    baseCropping.croppie('destroy');
-    // }, 1000);
   });
 
   $('#upload-image').on('click', function () {
@@ -70,12 +67,26 @@ window.onload = function () {
       .then((data) => {
         document.getElementById('removeProfilePic').style.display = 'block';
         document.getElementById('profilePic').src = data.profilePic;
-        document.getElementById('profilePicForm').reset();
-
         $('#crop-modal').modal('hide');
-        // setTimeout(() => {
-        baseCropping.croppie('destroy');
-        // }, 1000);
+        $('#profilePicForm').trigger('reset');
+      });
+  });
+
+  $('#removeProfilePic').on('click', function () {
+    const req = new Request('/upload/profilePic', {
+      method: 'DELETE',
+      mode: 'cors',
+    });
+    fetch(req)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById('removeProfilePic').style.display = 'none';
+        document.getElementById('profilePic').src = data.profilePic;
+        document.getElementById('profilePicForm').reset();
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('Serve Error Occured');
       });
   });
 };
