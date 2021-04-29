@@ -57,4 +57,16 @@ controller.deleteProfilePic = (req, res, next) => {
   }
 };
 
+controller.uploadPostImage = (req, res, next) => {
+  if (req.file) {
+    console.log('file uploading');
+    return res.status(200).json({
+      imageUrl: `/uploads/${req.file.filename}`,
+    });
+  }
+  return res.status(500).json({
+    message: 'Server Error',
+  });
+};
+
 module.exports = controller;

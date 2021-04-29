@@ -1,0 +1,64 @@
+<%- include('../../../partials/header.ejs') %>
+    <h2 class="text-center">Create post</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-sm-12">
+            <div class="card card-body">
+                <form action="/posts/create" method="post" enctype="multipart/form-data">
+                   
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control <%= errors.title ? 'is-invalid': '' %>" id="title"
+                            name="title" value="<%= post.title ? post.title : '' %>" placeholder="Post title">
+                        <div class="invalid-feedback">
+                            <%= errors.title && errors.title %>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tiny-mce-post-body">Body</label>
+                        <textarea class="form-control <%= errors.body ? 'is-invalid': '' %>" id="tiny-mce-post-body" name="body"
+                            placeholder="Post body" cols="30" rows="5"><%= post.body ? post.body : '' %></textarea>
+
+                        <div class="invalid-feedback">
+                            <%= errors.body && errors.body %>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tags">Tags (Max 10 )</label>
+                        <input type="text" class="form-control <%= errors.tags ? 'is-invalid': '' %>" id="tags"
+                            name="tags" value="<%= post.tags ? post.tags : '' %>" placeholder="tag1, tag2, tag3.......">
+                        <div class="invalid-feedback">
+                            <%= errors.tags && errors.tags %>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group is-invalid">
+                        <div class="input-group-append">
+                            <span class="input-group-text">Upload</span>
+                         </div>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="post-image" id="postImage" >
+                          <label class="custom-file-label" id="postImageLabel" for="postImage">Choose file...</label>
+                        </div>
+                    </div>
+
+                      <button type="submit" class="btn btn-primary btn-sm mt-3">Create</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+<%- include('../../../partials/footer.ejs') %>
+
+
+
+<script src="/scripts/createPost.js"></script>
+
+</body>
+
+</html>

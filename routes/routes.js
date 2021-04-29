@@ -1,6 +1,7 @@
 const authRoutes = require('../routes/authRoutes');
 const dashboarRoutes = require('../routes/dashboadRoutes');
 const uploadRoutes = require('./uploadRoute');
+const postRoutes = require('./postRoute');
 const playRoutes = require('../playground/play'); // todo remove later
 
 const routes = [
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/upload',
     controller: uploadRoutes,
+  },
+  {
+    path: '/posts',
+    controller: postRoutes,
   },
   {
     path: '/play',
