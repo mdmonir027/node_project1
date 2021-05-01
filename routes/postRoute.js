@@ -1,9 +1,17 @@
 const router = require('express').Router();
-const { create, store, edit, update } = require('../controller/postController');
+const {
+  posts,
+  create,
+  store,
+  edit,
+  update,
+  remove,
+} = require('../controller/postController');
 const { isAuthenticated } = require('../midellware/authMiddleware');
 const postValidator = require('../validator/post/postValidator');
 const upload = require('../midellware/uploadMiddelware');
 
+router.get('/', isAuthenticated, posts);
 router.get('/create', isAuthenticated, create);
 router.post(
   '/create',
@@ -20,6 +28,7 @@ router.post(
   postValidator,
   update
 );
+router.get('/delete/:id', isAuthenticated, remove);
 
 module.exports = router;
 

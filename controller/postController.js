@@ -9,6 +9,21 @@ const fs = require('fs');
 
 const controller = {};
 
+controller.posts = async (req, res, next) => {
+  try {
+    const posts = await Post.find();
+    res.render('pages/dashboard/post/posts.ejs', {
+      pageTitle: 'Create new post',
+      flashMessage: Flash.getMessage(req),
+      errors: {},
+      posts,
+    });
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+};
+
 controller.create = (req, res, next) => {
   res.render('pages/dashboard/post/createPost.ejs', {
     pageTitle: 'Create new post',
@@ -134,6 +149,33 @@ controller.update = async (req, res, next) => {
       errors: {},
       post: updatedPost,
     });
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+};
+
+controller.remove = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const post = await Post.findOne({ author: req.user._id, _id: id });
+    if (!post) {
+      let error = new Error('404 Page Not Found');
+      error.status = 404;
+      throw error;
+    }
+
+    await Post.findOneAndDelete({ author: req.user._id, _id: id });
+    fs.unlink(`public${post.thumbnail}`, (err) => {
+      if (err) console.log(err);
+    });
+    await Profile.findOneAndUpdate(
+      { author: req.user._id, _id: id },
+      { $pull: { posts: id } }
+    );
+
+    res.redirect('/posts');
   } catch (e) {
     console.log(e);
     next(e);
