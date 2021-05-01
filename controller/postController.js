@@ -68,7 +68,7 @@ controller.store = async (req, res, next) => {
     );
 
     req.flash('success', 'Post created successfully!');
-    return res.redirect(`/posts/edit/${createdPost._id}`);
+    return res.redirect(`/dashboard/posts/edit/${createdPost._id}`);
   } catch (e) {
     console.log(e);
     next(e);
@@ -175,7 +175,7 @@ controller.remove = async (req, res, next) => {
       { $pull: { posts: id } }
     );
 
-    res.redirect('/posts');
+    res.redirect('/dashboard/posts');
   } catch (e) {
     console.log(e);
     next(e);
