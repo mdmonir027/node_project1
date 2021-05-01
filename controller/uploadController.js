@@ -59,7 +59,7 @@ controller.deleteProfilePic = (req, res, next) => {
 
 controller.uploadPostImage = (req, res, next) => {
   if (req.file) {
-    console.log('file uploading');
+    console.log('file uploading'); // todo remove later
     return res.status(200).json({
       imageUrl: `/uploads/${req.file.filename}`,
     });

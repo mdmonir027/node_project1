@@ -1,5 +1,6 @@
 const { body } = require('express-validator');
 const cheerio = require('cheerio');
+const { strToArr } = require('../../utils/stringUtils');
 
 module.exports = [
   body('title')
@@ -7,7 +8,8 @@ module.exports = [
     .isEmpty()
     .withMessage('Title can not be empty')
     .isLength({ max: 100 })
-    .withMessage('Title must be less than 100 chars'),
+    .withMessage('Title must be less than 100 chars')
+    .trim(),
   body('body')
     .not()
     .isEmpty()
@@ -22,4 +24,16 @@ module.exports = [
       return true;
     })
     .trim(),
+  body('tags')
+    .not()
+    .isEmpty()
+    .withMessage('Tags can not be empty')
+    .trim()
+    .custom((value) => {
+      const tagsArr = strToArr(value, ',');
+      if (tagsArr.length > 10) {
+        throw new Error('Tags must not be greater than 10');
+      }
+      return true;
+    }),
 ];

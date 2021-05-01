@@ -15,9 +15,10 @@ window.onload = function () {
     ],
     toolbar:
       'bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor emotions | code preview',
-    height: 300,
+    height: 500,
     automatic_uploads: true,
     images_upload_url: '/upload/postImage',
+    relative_urls: false,
     images_upload_handler: (blobInfo, success, failure) => {
       const headers = new Headers();
       headers.append('Accept', 'Application/JSON');
