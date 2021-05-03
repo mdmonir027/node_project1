@@ -15,7 +15,7 @@ module.exports = [
     .trim(),
   body('email')
     .isEmail()
-    .withMessage('Please enter a valid emaill')
+    .withMessage('Please enter a valid email')
     .custom(async (email) => {
       const user = await User.findOne({ email });
       if (email) {
@@ -32,9 +32,9 @@ module.exports = [
   body('confirmPassword')
     .isLength({ min: 6 })
     .withMessage('Password must be greater than 6 char')
-    .custom((confrimPassword, { req }) => {
-      if (confrimPassword !== req.body.password) {
-        throw new Error("Password doesn'n matched");
+    .custom((confirmPassword, { req }) => {
+      if (confirmPassword !== req.body.password) {
+        throw new Error("Password doesn't matched");
       }
       return true;
     }),

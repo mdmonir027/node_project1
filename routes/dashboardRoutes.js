@@ -7,7 +7,7 @@ const {
   editProfile,
   updateProfile,
 } = require('../controller/dashboardController');
-const { isAuthenticated } = require('../midellware/authMiddleware');
+const { isAuthenticated } = require('../middleware/authMiddleware');
 
 router.get('/', isAuthenticated, dashboard);
 

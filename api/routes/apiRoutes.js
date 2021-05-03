@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { commentStore, replyStore } = require('../controller/commentController');
 const { like, dislike } = require('../controller/likeDislikeController');
 const { bookmark } = require('../controller/bookmarkController');
-const { isAuthenticated } = require('../../midellware/authMiddleware');
+const { isAuthenticated } = require('../../middleware/authMiddleware');
 
 router.post('/:postId/comment', isAuthenticated, commentStore);
 

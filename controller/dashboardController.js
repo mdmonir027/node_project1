@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator');
 const errorValidationFormatter = require('../utils/errorValidationFormatter');
 const User = require('../models/User');
 
-// scafollding
+// scaffolding
 const controller = {};
 
 controller.dashboard = async (req, res, next) => {
@@ -69,15 +69,12 @@ controller.storeProfile = async (req, res, next) => {
 
     const createdProfile = await profileInstance.save();
 
-    console.log(createdProfile);
-
     await User.findByIdAndUpdate(req.user._id, {
       $set: { profile: createdProfile._id },
     });
     req.flash('success', 'Profile Created Successfully!');
     res.redirect('/dashboard');
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
@@ -129,8 +126,6 @@ controller.updateProfile = async (req, res, next) => {
       { new: true }
     );
 
-    console.log(updatedProfile);
-
     req.flash('success', 'Profile Updated Successfully!');
     return res.render('pages/dashboard/editProfile.ejs', {
       pageTitle: 'Update your profile',
@@ -139,7 +134,6 @@ controller.updateProfile = async (req, res, next) => {
       profile: updatedProfile,
     });
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };

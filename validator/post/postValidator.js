@@ -19,7 +19,7 @@ module.exports = [
       const text = cheerioLoad.text();
 
       if (text.length >= 5000) {
-        throw new Error('Body length cannot be greate than 5000 chars');
+        throw new Error('Body length cannot be greater than 5000 chars');
       }
       return true;
     })

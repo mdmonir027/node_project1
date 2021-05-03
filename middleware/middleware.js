@@ -22,7 +22,7 @@ const middleware = [
   express.urlencoded({ extended: true }),
   express.json(),
   session({
-    secret: process.env.SECRECT_KEY || 'SECRET',
+    secret: process.env.SECRET_KEY || 'SECRET',
     resave: false,
     saveUninitialized: false,
     store,

@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const config = require('config');
 const chalk = require('chalk');
 
-const setMiddleware = require('./midellware/middleware');
+const setMiddleware = require('./middleware/middleware');
 const setRoutes = require('./routes/routes');
 
-// app scafolding
+// app scaffolding
 const app = express();
 
 // view engine with ejs

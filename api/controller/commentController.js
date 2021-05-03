@@ -35,7 +35,6 @@ controller.commentStore = async (req, res) => {
 
     return res.status(201).json(commentJson);
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       error: 'Server Error Occurred',
     });
@@ -59,12 +58,11 @@ controller.replyStore = async (req, res) => {
       $push: { replies: reply },
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       ...reply,
       profilePic: req.user.profilePic,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       error: 'Server Error Occurred',
     });

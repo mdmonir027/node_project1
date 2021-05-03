@@ -11,7 +11,6 @@ middleware.bindUserWithRequest = () => {
       req.user = await User.findById(req.session.user._id);
       next();
     } catch (error) {
-      console.log(error);
       next(error);
     }
   };

@@ -67,13 +67,12 @@ controller.dislike = async (req, res) => {
 
     const updatedPost = await Post.findById(postId);
 
-    res.status(200).json({
+    return res.status(200).json({
       disliked,
       totalLikes: updatedPost.likes.length,
       totalDislikes: updatedPost.dislikes.length,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       error: 'Server Error Occurred',
     });

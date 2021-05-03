@@ -31,7 +31,7 @@ controller.loginPost = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      req.flash('fail', 'Please provide valid crendtails');
+      req.flash('fail', 'Please provide valid credentials');
       return res.render('pages/auth/login', {
         pageTitle: 'Login Here',
         errors: {},
@@ -40,7 +40,7 @@ controller.loginPost = async (req, res, next) => {
     }
     const checkPassword = await bcrypt.compare(password, user.password);
     if (!checkPassword) {
-      req.flash('fail', 'Please provide valid crendtails');
+      req.flash('fail', 'Please provide valid credentials');
       return res.render('pages/auth/login', {
         pageTitle: 'Login Here',
         errors: {},
@@ -52,14 +52,12 @@ controller.loginPost = async (req, res, next) => {
     req.session.user = user;
     req.session.save((error) => {
       if (error) {
-        console.log(error);
         return next(error);
       }
       req.flash('success', 'Successfully login');
       return res.redirect('/dashboard');
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -78,7 +76,6 @@ controller.signupPost = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     req.flash('fail', 'There is some problem! Check your form!');
-    console.log(errors.formatWith(errorFormatter).mapped()); // todo remove later
     return res.render('pages/auth/signup', {
       pageTitle: 'Create new account',
       errors: errors.formatWith(errorFormatter).mapped(),
@@ -99,15 +96,13 @@ controller.signupPost = async (req, res, next) => {
     req.flash('success', 'Account created successfully');
     res.redirect('/auth/login');
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
 controller.logout = (req, res, next) => {
-  res.json({ hello: 'h' });
+  // res.json({ hello: 'h' });
   req.session.destroy((error) => {
     if (error) {
-      console.log(error);
       return next(error);
     }
     return res.redirect('/auth/login');

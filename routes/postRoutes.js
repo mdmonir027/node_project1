@@ -7,9 +7,9 @@ const {
   update,
   remove,
 } = require('../controller/postController');
-const { isAuthenticated } = require('../midellware/authMiddleware');
+const { isAuthenticated } = require('../middleware/authMiddleware');
 const postValidator = require('../validator/post/postValidator');
-const upload = require('../midellware/uploadMiddelware');
+const upload = require('../middleware/uploadMiddleware');
 
 router.get('/', isAuthenticated, posts);
 router.get('/create', isAuthenticated, create);

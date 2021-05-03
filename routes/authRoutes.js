@@ -13,7 +13,7 @@ const {
 const {
   isUnauthenticated,
   isAuthenticated,
-} = require('../midellware/authMiddleware');
+} = require('../middleware/authMiddleware');
 
 router.get('/login', isUnauthenticated, loginGet);
 router.post('/login', isUnauthenticated, loginValidator, loginPost);

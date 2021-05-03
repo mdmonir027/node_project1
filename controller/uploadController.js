@@ -20,7 +20,7 @@ controller.uploadProfilePic = async (req, res, next) => {
       await User.findByIdAndUpdate(req.user._id, { $set: { profilePic } });
       if (oldProfilePic !== '/uploads/default.png') {
         fs.unlink(`public${oldProfilePic}`, (err) => {
-          if (err) console.log(err);
+          // if (err) console.log(err); // todo remove later
         });
       }
 
@@ -59,7 +59,6 @@ controller.deleteProfilePic = (req, res, next) => {
 
 controller.uploadPostImage = (req, res, next) => {
   if (req.file) {
-    console.log('file uploading'); // todo remove later
     return res.status(200).json({
       imageUrl: `/uploads/${req.file.filename}`,
     });

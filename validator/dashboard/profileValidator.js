@@ -2,7 +2,7 @@ const { body } = require('express-validator');
 const validator = require('validator');
 
 // functions
-const linkValidatior = (value) => {
+const linkValidator = (value) => {
   if (value) {
     if (!validator.isURL(value)) {
       throw new Error('Please provide a valid url');
@@ -30,8 +30,8 @@ module.exports = [
     .withMessage('Bio can not be empty')
     .isLength({ max: 500 })
     .withMessage('Title must be less than 500 chars'),
-  body('website').custom(linkValidatior),
-  body('facebook').custom(linkValidatior),
-  body('twitter').custom(linkValidatior),
-  body('github').custom(linkValidatior),
+  body('website').custom(linkValidator),
+  body('facebook').custom(linkValidator),
+  body('twitter').custom(linkValidator),
+  body('github').custom(linkValidator),
 ];

@@ -19,7 +19,6 @@ controller.posts = async (req, res, next) => {
       posts,
     });
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
@@ -54,7 +53,7 @@ controller.store = async (req, res, next) => {
     thumbnail: '',
     readTime: readingTime(body).text,
     likes: [],
-    dilikes: [],
+    dislikes: [],
     comments: [],
   });
 
@@ -70,7 +69,6 @@ controller.store = async (req, res, next) => {
     req.flash('success', 'Post created successfully!');
     return res.redirect(`/dashboard/posts/edit/${createdPost._id}`);
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
@@ -93,7 +91,6 @@ controller.edit = async (req, res, next) => {
       post,
     });
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
@@ -130,7 +127,7 @@ controller.update = async (req, res, next) => {
 
     if (req.file) {
       fs.unlink(`public${post.thumbnail}`, (err) => {
-        if (err) console.log(err);
+        // if (err) console.log(err); // todo remove later
       });
       postData.thumbnail = `/uploads/${req.file.filename}`;
     }
@@ -150,7 +147,6 @@ controller.update = async (req, res, next) => {
       post: updatedPost,
     });
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };
@@ -168,7 +164,7 @@ controller.remove = async (req, res, next) => {
 
     await Post.findOneAndDelete({ author: req.user._id, _id: id });
     fs.unlink(`public${post.thumbnail}`, (err) => {
-      if (err) console.log(err);
+      // if (err) console.log(err); // todo remove later
     });
     await Profile.findOneAndUpdate(
       { author: req.user._id, _id: id },
@@ -177,7 +173,6 @@ controller.remove = async (req, res, next) => {
 
     res.redirect('/dashboard/posts');
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };

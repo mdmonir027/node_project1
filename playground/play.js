@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const uploadMiddelware = require('../midellware/uploadMiddelware');
+const uploadMiddleware = require('../middleware/uploadMiddleware');
 
 router.get('/play', (req, res, next) => {
   res.render('playground/play.ejs', {
@@ -7,7 +7,7 @@ router.get('/play', (req, res, next) => {
     flashMessage: {},
   });
 });
-router.post('/play', uploadMiddelware.single('file'), (req, res, next) => {
+router.post('/play', uploadMiddleware.single('file'), (req, res, next) => {
   // req.flash('fail', 'There is some error');
   res.redirect('/play/play');
 });
