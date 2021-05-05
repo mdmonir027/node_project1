@@ -18,6 +18,7 @@ app.set('views', 'views');
 setMiddleware(app);
 setRoutes(app);
 
+// todo uncomment later <
 // app.use((req, res, next) => {
 //   const error = new Error('404 Not Found');
 //   error.status = 404;
@@ -30,6 +31,7 @@ setRoutes(app);
 //   }
 //   return res.render('pages/error/505', { flashMessage: {} });
 // });
+// todo uncomment later >
 
 const PORT = config.get('port');
 

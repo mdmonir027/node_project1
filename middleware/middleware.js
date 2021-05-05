@@ -28,8 +28,8 @@ const middleware = [
     store,
   }),
   bindUserWithRequest(),
-  setLocals(),
   flash(),
+  setLocals(),
 ];
 
 module.exports = (app) => app.use(middleware);
