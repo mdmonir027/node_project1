@@ -2,6 +2,7 @@
 const moment = require('moment');
 const Flash = require('../utils/Flash');
 const Post = require('../models/Post');
+const Profile = require('../models/Profile');
 
 // scaffolding
 const controller = {};
@@ -64,11 +65,20 @@ controller.getAllPosts = async (req, res, next) => {
     const totalPost = await Post.countDocuments();
     const totalPage = totalPost / itemPerPage;
 
+    let bookmarks = [];
+    if (req.user) {
+      const profile = await Profile.findOne({ user: req.user._id });
+      if (profile) {
+        bookmarks = profile.bookmarks;
+      }
+    }
+
     return res.render('pages/explorer/explorer.ejs', {
       pageTitle: 'My dashboard',
       flashMessage: Flash.getMessage(req),
       filter,
       posts,
+      bookmarks,
       currentPage,
       itemPerPage,
       totalPost,
