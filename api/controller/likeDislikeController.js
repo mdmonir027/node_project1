@@ -3,6 +3,7 @@ const Post = require('../../models/Post');
 const controller = {};
 
 controller.like = async (req, res) => {
+  console.log('like control');
   if (!req.user) {
     return res.status(403).json({
       error: 'You are not an authenticated user',
@@ -10,7 +11,7 @@ controller.like = async (req, res) => {
   }
   try {
     const { postId } = req.params;
-    const userId = req.body._id;
+    const userId = req.user._id;
     let liked = null;
 
     const post = await Post.findById(postId);
@@ -49,7 +50,7 @@ controller.dislike = async (req, res) => {
   }
   try {
     const { postId } = req.params;
-    const userId = req.body._id;
+    const userId = req.user._id;
     let disliked = null;
 
     const post = await Post.findById(postId);
