@@ -90,4 +90,51 @@ controller.getAllPosts = async (req, res, next) => {
   }
 };
 
+controller.singlePost = async (req, res, next) => {
+  const { postId } = req.params;
+
+  try {
+    const post = await Post.findById(postId)
+      .populate('author', 'username profilePic')
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'user',
+          select: 'username profilePic',
+        },
+      })
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'replies.user',
+          select: 'username profilePic',
+        },
+      });
+
+    if (!post) {
+      const error = new Error('404 Page not found');
+      error.status = 404;
+      throw error;
+    }
+
+    let bookmarks = [];
+    if (req.user) {
+      const profile = await Profile.findOne({ user: req.user._id });
+      if (profile) {
+        bookmarks = profile.bookmarks;
+      }
+    }
+    console.log(post);
+    return res.render('pages/explorer/singlePost.ejs', {
+      pageTitle: post.title,
+      flashMessage: Flash.getMessage(req),
+      post,
+      bookmarks,
+    });
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+};
+
 module.exports = controller;

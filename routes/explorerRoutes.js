@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { getAllPosts } = require('../controller/explorerController');
+const { getAllPosts, singlePost } = require('../controller/explorerController');
+
+router.get('/:postId', singlePost);
 
 router.get('/', getAllPosts);
 

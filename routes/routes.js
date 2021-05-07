@@ -5,6 +5,9 @@ const postRoutes = require('./postRoutes');
 const apiRoutes = require('../api/routes/apiRoutes');
 const explorerRoutes = require('./explorerRoutes');
 
+// single controller
+const { getAllPosts } = require('../controller/explorerController');
+
 const routes = [
   {
     path: '/auth',
@@ -27,16 +30,12 @@ const routes = [
     controller: apiRoutes,
   },
   {
-    path: '/',
+    path: '/post',
     controller: explorerRoutes,
   },
   {
     path: '/',
-    controller: (req, res) => {
-      res.json({
-        message: 'working',
-      });
-    },
+    controller: getAllPosts,
   },
 ];
 

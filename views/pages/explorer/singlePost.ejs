@@ -1,0 +1,109 @@
+<%- include('../../partials/header.ejs') %>
+
+   <div class="container">
+       <div class="row justify-content-center">
+           <div class="col-md-6 my-3">
+                <div class="card card-body">
+                    <section >
+                        <h2><%= post.title  %> </h2>
+                        <div class="d-flex mb-3">
+                                <small>
+                                    <%= fromNowTime(post.createdAt) %> ,
+                                    Posted By  <%= post.author.username %>,
+                                    <%= post.readTime %> 
+                                </small>
+                                <% if(user){ %> 
+                                
+                                    <span class="ml-auto bookmark" data-post=<%= post._id %> >
+                                        <% if(bookmarks.includes(post._id)){ %> 
+                                            <i class="fas fa-bookmark"></i>
+                                        <% }else{ %> 
+                                            <i class="far fa-bookmark"></i>
+                                        <%} %> 
+                                    </span>
+                                
+                                <% } %> 
+                        </div>
+                        <% if(post.thumbnail){ %> 
+                            <img src="<%= post.thumbnail %> " alt="<%= post.title %>" class="img-fluid">
+                        <% }else{%> 
+                            <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" class="img-fluid">
+                        <%} %> 
+                    </section>
+                    
+                    <section>
+                        <%- post.body %> 
+                    </section>
+                    <section>
+                            <% if(!user){ %>
+                                <button class="btn btn-primary btn-sm" disabled>
+                                    <i class="fas fa-thumbs-up"></i> (<%= post.likes.length %> )
+                                </button>
+                                <button class="btn btn-danger btn-sm" disabled>
+                                    <i class="fas fa-thumbs-down"></i> (<%= post.dislikes.length %> )
+                                </button>
+                                <p>To Like and comment Please login <a href="/auth/login">Login</a></p>
+                            <% } else{ %> 
+                                <button class="btn btn-primary btn-sm" id="likeBtn" data-post="<%= post._id %> ">
+                                    <i class="<%= post.likes.includes(post._id) ? 'fas': 'far' %>  fa-thumbs-up"></i> (<%= post.likes.length %> )
+                                </button>
+                                <button class="btn btn-danger btn-sm" id="dislikeBtn" data-post="<%= post._id %> ">
+                                    <i class="<%= post.dislikes.includes(post._id) ? 'fas': 'far' %>  fa-thumbs-down"></i> (<%= post.likes.length %> )
+                                </button>
+                            
+                            <% } %>   
+                            
+                    </section>
+                    <section>
+                        <% if(user){ %> 
+                            <div class="mt-2">
+                                <label for="comment">Leave a comment here</label>
+                                <input type="email" class="form-control" id="comment" placeholder="Press enter to submit">
+                            </div>                   
+                        <%} %> 
+
+                        <div class="comments">
+                            <% if(post.comments.length === 0){ %>
+                                 <h2>No Comments available</h2>
+                            <% } else { %>
+                             <% for(let comment of post.comments.reverse()){ %>                            
+                            
+                             <div class="media">
+                                 <img src="<%= comment.user.profilePic %>" class="rounded-circle m-3" style="width: 40px;">
+                                 <div class="media-body">
+                                   <h5 class="mt-0"><%= comment.user.username  %> </h5>
+                                   <p><%= comment.body %> </p>
+                                   <% if(comment.replies.length > 0){ %> 
+                                     <div class="replies">
+                                         <% for(let reply of comment.replies.reverse()){%>
+                                             <div class="media">
+                                                 <img src="<%=reply.user.profilePic  %> " class="align-self-center mr-3 rounded-circle" style="width: 40px;">
+                                                 <div class="media-body">
+                                                     <h5 class="mt-0"><%= reply.user.username %> </h5>
+                                                     <p><%= reply.body %> </p>
+                                                 </div>
+                                             </div>
+                                         <% } %> 
+                                     </div>
+                                   <% } %> 
+                                     <div class="my-3">
+                                         <input type="text" class="form-control" placeholder="Press enter to reply" id="commentReply" data-comment="<%= comment._id %> ">
+                                     </div>
+                                 </div>
+                               </div>
+                               <% } %> 
+                             <% } %> 
+                         
+                        </div>
+                        
+                        
+                    </section>
+                </div>
+           </div>
+       </div>
+   </div>
+  
+<%- include('../../partials/footer.ejs') %>
+<script src="/scripts/bookmarks.js"></script>
+</body>
+</html>
