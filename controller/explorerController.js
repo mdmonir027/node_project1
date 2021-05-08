@@ -4,9 +4,6 @@ const Flash = require('../utils/Flash');
 const Post = require('../models/Post');
 const Profile = require('../models/Profile');
 
-// scaffolding
-const controller = {};
-
 // functions
 
 const generateDate = (days) => {
@@ -47,6 +44,9 @@ const generateFilterObject = (filter) => {
     order,
   };
 };
+
+// scaffolding
+const controller = {};
 
 controller.getAllPosts = async (req, res, next) => {
   const filter = req.query.filter || 'latest';

@@ -4,6 +4,7 @@ const uploadRoutes = require('./uploadRoutes');
 const postRoutes = require('./postRoutes');
 const apiRoutes = require('../api/routes/apiRoutes');
 const explorerRoutes = require('./explorerRoutes');
+const searchRoutes = require('./searchRoutes');
 
 // single controller
 const { getAllPosts } = require('../controller/explorerController');
@@ -32,6 +33,10 @@ const routes = [
   {
     path: '/post',
     controller: explorerRoutes,
+  },
+  {
+    path: '/search',
+    controller: searchRoutes,
   },
   {
     path: '/',
