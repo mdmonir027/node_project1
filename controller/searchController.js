@@ -13,6 +13,9 @@ controller.searchIndex = async (req, res, next) => {
     const posts = await Post.find({
       $text: { $search: term },
     })
+      .populate({
+        path: 'author',
+      })
       .skip(currentPage * itemPerPage - itemPerPage)
       .limit(itemPerPage);
 

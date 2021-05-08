@@ -1,0 +1,99 @@
+<%- include('../../partials/header.ejs') %>
+
+   <div class="container">
+       <div class="row justify-content-center">
+           <div class="col-md-12">
+               <div class="row mt-2">
+                   <div class="col-md-4">
+                    <div class="card card-body">
+                        
+                        <div class="profile-userpic">
+                          <img src="<%= author.profilePic  %> " class="rounded-circle" style="width: 100px;height: 100px;object-fit: cover;" alt="">
+                        </div>
+                        <ul style="list-style: none;margin-top:10px ;padding: 0;">
+                            <li> <strong>Name:</strong> <%= profile.name %> </li>
+                            <li> <strong>Email:</strong> <%= author.email  %> </li>
+                            <li> <strong>Bio</strong>: <%= profile.bio  %> </li>
+                        </ul>
+                        
+                        <div>
+                            <% if(profileLinks.website ||profileLinks.facebook || profileLinks.twitter || profileLinks.github ){ %>
+                                Social Link:
+                                <% if(profileLinks.website){ %> 
+                                    <span>
+                                        <a href="<%= profileLinks.website %>" target="_blank"><i class="fab fa-internet-explorer"></i></a>
+                                    </span>
+                                <% } %>  
+                                <% if(profileLinks.facebook){ %> 
+                                    <span>
+                                        <a href="<%= profileLinks.facebook %>" target="_blank"><i class="fab fa-facebook"></i></a>
+                                    </span>
+                                <% } %>  
+                                <% if(profileLinks.facebook){ %> 
+                                    <span>
+                                        <a href="<%= profileLinks.facebook %>" target="_blank"><i class="fab fa-facebook"></i></a>
+                                    </span>
+                                <% } %>  
+                               
+                            <% } %> 
+                        </div>
+
+                        <ul style="list-style: none;margin-top:10px ;padding: 0;">
+                            <li> <strong>Total Post</strong>: <%= posts.length  %> </li>
+                            <li> <strong>Account Created</strong>: <%= fromNowTime(author.createdAt)%> </li>
+                        </ul>
+
+                      </div>
+                   </div>
+                   <div class="col-md-6">
+                        <% if(posts.length === 0){ %> 
+                         <h2>No post available here</h2>
+                        <% }else{ %>  
+                            <% for(let post of posts.reverse()){ %>
+                             
+                             <div class="card card-body mb-2"> 
+                                 <a href="/post/<%=post._id %>" style="color: #222;">
+                                     <h4><%= post.title %></h4>
+                                     <p><%- truncate(post.body) %></p>
+                                 </a>
+                                 <div class="d-flex">
+                                     <small>
+                                         <%= fromNowTime(post.createdAt) %> ,
+                                         Posted By <span class="text-primary"> <%= author.username %></span>,
+                                          <%= post.readTime %> 
+                                     </small>
+                                     
+                                 </div>
+                             </div>
+                             
+                             <% }  %> 
+                        <% } %> 
+                    
+                   </div>
+                   <div class="col-md-2">
+                       <h5 class="text-center d-block"> Photo Gallery </h5>
+                    <% if(posts.length === 0){ %> 
+                        <h2>No post available here</h2>
+                       <% }else{ %>  
+                           <% for(let post of posts.reverse()){ %>
+                            
+                            <div class="card card-body mb-2"> 
+                                <% if(post.thumbnail){%> 
+                                    <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
+                                <% }else{ %> 
+                                    <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" >
+                                <%} %>
+                            </div>
+                            
+                            <% }  %> 
+                       <% } %> 
+                   </div>
+               </div>
+           </div>
+           
+       </div>
+   </div>
+  
+<%- include('../../partials/footer.ejs') %>
+</body>
+</html>
