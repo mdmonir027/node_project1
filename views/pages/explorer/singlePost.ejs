@@ -58,39 +58,41 @@
                         <% if(user){ %> 
                             <div class="mt-2">
                                 <label for="comment">Leave a comment here</label>
-                                <input type="email" class="form-control" id="comment" placeholder="Press enter to submit">
+                                <input type="email" class="form-control" id="comment" placeholder="Press enter to submit" data-post="<%= post._id  %>">
                             </div>                   
                         <%} %> 
 
-                        <div class="comments">
+                        <div class="comments mt-4" id="comment-holder">
                             <% if(post.comments.length === 0){ %>
-                                 <h2>No Comments available</h2>
+                                 <h2 id="noComments">No Comments available</h2>
                             <% } else { %>
                              <% for(let comment of post.comments.reverse()){ %>                            
                             
-                             <div class="media">
+                             <div class="media border mb-1 pr-3 py-2">
                                  <img src="<%= comment.user.profilePic %>" class="rounded-circle m-3" style="width: 40px;">
                                  <div class="media-body">
-                                   <h5 class="mt-0"><%= comment.user.username  %> </h5>
-                                   <p><%= comment.body %> </p>
+                                   <h5 class="mt-0 mb-0"><%= comment.user.username  %> </h5>
+                                   <p class="m-0"><%= comment.body %> </p>
                                    <% if(comment.replies.length > 0){ %> 
                                      <div class="replies">
-                                         <% for(let reply of comment.replies.reverse()){%>
-                                             <div class="media">
-                                                 <img src="<%=reply.user.profilePic  %> " class="align-self-center mr-3 rounded-circle" style="width: 40px;">
+                                         <% for(let reply of comment.replies){%>
+                                             <div class="media mb-1 mt-2">
+                                                 <img src="<%=reply.user.profilePic  %> " class="mr-3 rounded-circle" style="width: 40px;">
                                                  <div class="media-body">
-                                                     <h5 class="mt-0"><%= reply.user.username %> </h5>
-                                                     <p><%= reply.body %> </p>
+                                                     <h5 class="mt-0 mb-0"><%= reply.user.username %> </h5>
+                                                     <p class="m-0"><%= reply.body %> </p>
                                                  </div>
                                              </div>
                                          <% } %> 
                                      </div>
                                    <% } %> 
-                                     <div class="my-3">
-                                         <input type="text" class="form-control" placeholder="Press enter to reply" id="commentReply" data-comment="<%= comment._id %> ">
+                                   <% if(user){ %> 
+                                     <div class="mt-2">
+                                         <input type="text" class="form-control commentReply" placeholder="Press enter to reply"  data-comment="<%= comment._id %>">
                                      </div>
+                                    <% } %> 
                                  </div>
-                               </div>
+                             </div>
                                <% } %> 
                              <% } %> 
                          
@@ -104,7 +106,9 @@
    </div>
   
 <%- include('../../partials/footer.ejs') %>
-<script src="/scripts/bookmarks.js"></script>
-<script src="/scripts/likeDislike.js"></script>
+<% if(user){ %>
+    <script src="/scripts/post.js"></script>
+<% } %> 
+
 </body>
 </html>

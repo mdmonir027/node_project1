@@ -28,9 +28,9 @@ controller.commentStore = async (req, res) => {
       $push: { comments: createdComment._id },
     });
 
-    const commentJson = await Comment.findById(createdComment._id).populated({
+    const commentJson = await Comment.findById(createdComment._id).populate({
       path: 'user',
-      select: 'profilePic, username',
+      select: 'profilePic username',
     });
 
     return res.status(201).json(commentJson);
@@ -61,6 +61,7 @@ controller.replyStore = async (req, res) => {
     return res.status(201).json({
       ...reply,
       profilePic: req.user.profilePic,
+      username: req.user.username,
     });
   } catch (e) {
     res.status(500).json({
