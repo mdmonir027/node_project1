@@ -166,8 +166,8 @@ function createCommentReplyElement(reply) {
   const innerHTML = `
   <img src="${reply.profilePic} " class="mr-3 rounded-circle" style="width: 40px;">
   <div class="media-body">
-      <h5 class="mt-0">${reply.username}</h5>
-      <p>${reply.body} </p>
+      <h5 class="mt-0 mb-0">${reply.username}</h5>
+      <p class="m-0">${reply.body} </p>
   </div>`;
 
   const div = document.createElement('div');
