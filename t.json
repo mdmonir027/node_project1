@@ -1,0 +1,128 @@
+[
+  {
+    "_id": "6095622a872a4c176819b278",
+    "post": {
+      "_id": "60926e118c6e431edc846127",
+      "title": "Rerum consequatur e"
+    },
+    "user": {
+      "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+      "_id": "6090da5fa5dcb004fcc8f230",
+      "username": "mdmonir"
+    },
+    "body": "hello world",
+    "replies": [
+      {
+        "createAt": "2021-05-08T04:13:57.740Z",
+        "_id": "60961043ecb5970eb098d7ef",
+        "body": "reply attempt 3",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-08T04:17:19.783Z",
+        "_id": "6096110135f48924f4f78a23",
+        "body": "hello man",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-08T04:19:01.204Z",
+        "_id": "6096113e4255213a000ea2d5",
+        "body": "reply attempt 4",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-08T04:20:43.593Z",
+        "_id": "609611bba499c11ec4240c5f",
+        "body": "reply attempt 5",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-08T04:20:43.593Z",
+        "_id": "609611dba499c11ec4240c60",
+        "body": "reply attempt 6",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      }
+    ],
+    "createdAt": "2021-05-07T15:52:10.447Z",
+    "updatedAt": "2021-05-08T04:21:47.870Z",
+    "__v": 0
+  },
+  {
+    "_id": "6096237da499c11ec4240c61",
+    "post": {
+      "_id": "60926e118c6e431edc846127",
+      "title": "Rerum consequatur e"
+    },
+    "user": {
+      "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+      "_id": "6090da5fa5dcb004fcc8f230",
+      "username": "mdmonir"
+    },
+    "body": "good post",
+    "replies": [
+      {
+        "createAt": "2021-05-08T04:20:43.593Z",
+        "_id": "60962384a499c11ec4240c62",
+        "body": "thank you",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-08T04:20:43.593Z",
+        "_id": "60962387a499c11ec4240c63",
+        "body": "welcome",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-08T05:38:24.615Z",
+        "_id": "609623d770ab9527d4e7c165",
+        "body": "ok done",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      },
+      {
+        "createAt": "2021-05-10T16:15:59.595Z",
+        "_id": "60995c4bea8a3a1cf42c6d21",
+        "body": "ok done",
+        "user": {
+          "profilePic": "/uploads/profilePic-1620105871570-pexels-keenan-constance-2865901.png",
+          "_id": "6090da5fa5dcb004fcc8f230",
+          "username": "mdmonir"
+        }
+      }
+    ],
+    "createdAt": "2021-05-08T05:37:01.709Z",
+    "updatedAt": "2021-05-10T16:16:11.477Z",
+    "__v": 0
+  }
+]

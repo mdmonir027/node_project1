@@ -1,0 +1,66 @@
+<%- include('../../partials/header.ejs') %>
+    <div class="row">
+        <div class="col-md-3">
+            <%- include('../../partials/sidebar.ejs') %>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body">
+                <div class="comments mt-4" id="comment-holder">
+                    <% if(comments.length === 0){ %>
+                         <h2 id="noComments">No Comments available</h2>
+                    <% } else { %>
+                     <% for(let comment of comments.reverse()){ %>                            
+                    
+                     <div class="media border mb-1 pr-3 py-2">
+                         <img src="<%= comment.user.profilePic %>" class="rounded-circle m-3" style="width: 40px;">
+                         <div class="media-body">
+                             <p class="m-0">On Post <a href="/post<%= comment.post._id  %> ">  <%= comment.post.title %> </a> , By <a href="/author/<%= comment.user._id  %>"><%= comment.user.username  %> </a> , <%= fromNowTime(comment.createdAt)%></p>
+
+                            
+                                <h5 class="mt-0 mb-0"><%= comment.user.username  %> </h5>
+                              
+                          
+
+                           <p class="m-0"><%= comment.body %> </p>
+                          
+                           <% if(comment.replies.length > 0){ %> 
+                             <div class="replies">
+                                 <% for(let reply of comment.replies){%>
+                                     <div class="media mb-1 mt-2">
+                                         <img src="<%=reply.user.profilePic  %> " class="mr-3 rounded-circle" style="width: 40px;">
+                                         <div class="media-body">
+                                           
+                                             <div class="d-flex align-items-center">
+                                                <h5 class="mt-0 mb-0"> <a href="/author/<%= reply.user._id %>" target="_blank"> <%= reply.user.username  %></a> </h5>
+                                                <small class="ml-3 text-primary"><%= fromNowTime(reply.createAt)%> </small>
+                                             </div>
+                                             <p class="m-0"><%= reply.body %> </p>
+                                         </div>
+                                     </div>
+                                 <% } %> 
+                             </div>
+                           <% } %> 
+                           <% if(user){ %> 
+                             <div class="mt-2">
+                                 <input type="text" class="form-control commentReply" placeholder="Press enter to reply"  data-comment="<%= comment._id %>">
+                             </div>
+                            <% } %> 
+                         </div>
+                     </div>
+                       <% } %> 
+                     <% } %> 
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/footer.ejs') %>
+
+
+
+<script src="/scripts/dashboardCommentReply.js"></script>
+
+</body>
+
+</html>

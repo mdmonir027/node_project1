@@ -7,6 +7,7 @@ const {
   editProfile,
   updateProfile,
   bookmarkPosts,
+  comments,
 } = require('../controller/dashboardController');
 const { isAuthenticated } = require('../middleware/authMiddleware');
 
@@ -22,6 +23,7 @@ router.get('/edit-profile', isAuthenticated, editProfile);
 router.post('/edit-profile', isAuthenticated, profileValidation, updateProfile);
 
 router.get('/posts/bookmarks', isAuthenticated, bookmarkPosts);
+router.get('/posts/comments', isAuthenticated, comments);
 
 router.get('/', isAuthenticated, dashboard);
 

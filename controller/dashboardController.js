@@ -4,6 +4,7 @@ const Profile = require('../models/Profile');
 const { validationResult } = require('express-validator');
 const errorValidationFormatter = require('../utils/errorValidationFormatter');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 
 // scaffolding
 const controller = {};
@@ -149,6 +150,36 @@ controller.bookmarkPosts = async (req, res, next) => {
       pageTitle: 'My Bookmark Post',
       flashMessage: Flash.getMessage(req),
       posts: profile.bookmarks,
+    });
+  } catch (e) {
+    console.log(e); // todo remove later
+    next(e);
+  }
+};
+
+controller.comments = async (req, res, next) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user._id });
+    const comments = await Comment.find({ post: { $in: profile.posts } })
+      .populate({
+        path: 'post',
+        select: 'title',
+      })
+      .populate({
+        path: 'user',
+        select: 'username profilePic',
+      })
+      .populate({
+        path: 'replies.user',
+        select: 'username profilePic',
+      });
+
+    // res.json(comments);
+
+    res.render('pages/dashboard/comments.ejs', {
+      pageTitle: 'All Comments',
+      flashMessage: Flash.getMessage(req),
+      comments,
     });
   } catch (e) {
     console.log(e); // todo remove later
