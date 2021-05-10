@@ -6,10 +6,9 @@ const {
   storeProfile,
   editProfile,
   updateProfile,
+  bookmarkPosts,
 } = require('../controller/dashboardController');
 const { isAuthenticated } = require('../middleware/authMiddleware');
-
-router.get('/', isAuthenticated, dashboard);
 
 router.get('/create-profile', isAuthenticated, createProfile);
 router.post(
@@ -21,5 +20,9 @@ router.post(
 
 router.get('/edit-profile', isAuthenticated, editProfile);
 router.post('/edit-profile', isAuthenticated, profileValidation, updateProfile);
+
+router.get('/posts/bookmarks', isAuthenticated, bookmarkPosts);
+
+router.get('/', isAuthenticated, dashboard);
 
 module.exports = router;

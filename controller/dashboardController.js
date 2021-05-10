@@ -138,4 +138,22 @@ controller.updateProfile = async (req, res, next) => {
   }
 };
 
+controller.bookmarkPosts = async (req, res, next) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user._id }).populate({
+      path: 'bookmarks',
+      model: 'Post',
+    });
+
+    res.render('pages/dashboard/post/bookmarks.ejs', {
+      pageTitle: 'My Bookmark Post',
+      flashMessage: Flash.getMessage(req),
+      posts: profile.bookmarks,
+    });
+  } catch (e) {
+    console.log(e); // todo remove later
+    next(e);
+  }
+};
+
 module.exports = controller;
