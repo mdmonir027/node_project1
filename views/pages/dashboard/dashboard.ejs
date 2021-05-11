@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12 my-3">
                     <div class="card card-body">
-                        <h4>My recent posts</h5>
+                        <h4>My recent posts</h4>
                             <div class="row">
                                 <% if(posts.length === 0){ %> 
                                     <h2>No Recent posts</h2>
@@ -24,7 +24,7 @@
                                                 <%} %>
                                                 <div class="card-body">
                                                     <a href="/post/<%=post._id %>" class="text-primary">
-                                                        <h6><%= post.title %></h4>
+                                                        <h6><%= post.title %></h6>
                                                     </a>
                                                 </div>
                                             </div>
@@ -54,7 +54,7 @@
                                             <%} %>
                                             <div class="card-body">
                                                 <a href="/post/<%=post._id %>" class="text-primary">
-                                                    <h6><%= post.title %></h4>
+                                                    <h6><%= post.title %></h6>
                                                 </a>
                                             </div>
                                         </div>
