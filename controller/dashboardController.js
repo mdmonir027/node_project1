@@ -11,13 +11,23 @@ const controller = {};
 
 controller.dashboard = async (req, res, next) => {
   try {
-    const profile = await Profile.findOne({ user: req.user._id });
+    const profile = await Profile.findOne({ user: req.user._id })
+      .populate({
+        path: 'posts',
+        select: 'title thumbnail',
+      })
+      .populate({
+        path: 'bookmarks',
+        select: 'title thumbnail',
+      });
     if (!profile) {
       return res.redirect('/dashboard/create-profile');
     }
-    res.render('pages/dashboard/dashboard.ejs', {
+    return res.render('pages/dashboard/dashboard.ejs', {
       pageTitle: 'My dashboard',
       flashMessage: Flash.getMessage(req),
+      posts: profile.posts.reverse().slice(0, 3),
+      bookmarks: profile.bookmarks.reverse().slice(0, 3),
     });
   } catch (e) {
     next(e);
