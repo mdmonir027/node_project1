@@ -78,11 +78,7 @@
                            <% for(let post of posts.reverse()){ %>
                             
                             <div class="card card-body mb-2"> 
-                                <% if(post.thumbnail){%> 
-                                    <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
-                                <% }else{ %> 
-                                    <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" >
-                                <%} %>
+                                <img src="<%= post.thumbnail || '/uploads/default-post-image.jpg' %>" alt="<%= post.title %>" class="img-fluid ">
                             </div>
                             
                             <% }  %> 

@@ -11,31 +11,24 @@
 
                     <h5 class="text-primary">You haven't bookmark any post!</h5>
 
-                    <% } else{ %>
-                        <div class="row">
-                            <% for(let post of posts.reverse()){ %>
-                                <div class="col-md-4 mb-2">
-                                    <div class="card">
-                                        <% if(post.thumbnail){ %>
-                                            <img src="<%= post.thumbnail%> " alt="<%= post.title %>"
-                                                class="card-img-top"
-                                                style="width: 100%; height: 200px;object-fit: cover; background: #000;">
-                                            <% } else{ %>
-                                                <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>"
-                                                class="card-img-top"
-                                                style="width: 100%; height: 200px;object-fit: cover; background: #000;">
-                                            <% } %>
-                                                <div class="card-body">
-                                                    <a href="/post/<%= post._id %>" class="card-title"
-                                                        style="color: #000;">
-                                                        <%=post.title %>
-                                                    </a>
-                                                </div>
+                <% } else{ %>
+                    <div class="row">
+                        <% for(let post of posts.reverse()){ %>
+                            <div class="col-md-4 mb-2">
+                                <div class="card">
+
+                                    <img src="<%= post.thumbnail || '/uploads/default-post-image.jpg' %>" alt="<%= post.title %>" class="card-img-top" style="width: 100%; height: 200px;object-fit: cover; background: #000;">
+                                    <div class="card-body">
+                                        <a href="/post/<%= post._id %>" class="card-title"
+                                            style="color: #000;">
+                                            <%=post.title %>
+                                        </a>
                                     </div>
                                 </div>
-                                <% } %>
-                        </div>
-                        <% } %>
+                            </div>
+                            <% } %>
+                    </div>
+                <% } %>
 
             </div>
         </div>

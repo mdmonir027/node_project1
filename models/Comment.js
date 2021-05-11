@@ -32,7 +32,7 @@ const commentSchema = new Schema(
           ref: 'User',
           required: true,
         },
-        createAt: {
+        createdAt: {
           type: Date,
           default: new Date(),
         },

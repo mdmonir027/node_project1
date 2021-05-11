@@ -17,11 +17,7 @@
                        <% for(let post of posts.reverse()){ %>
                         
                         <div class="card card-body mb-2">
-                            <% if(post.thumbnail){%> 
-                                <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
-                            <% }else{ %> 
-                                <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" >
-                            <%} %> 
+                            <img src="<%= post.thumbnail || '/uploads/default-post-image.jpg' %>" alt="<%= post.title %>" class="img-fluid ">
                             <a href="/post/<%=post._id %>" style="color: #222;">
                                 <h4><%= post.title %></h4>
                                 <p><%- truncate(post.body) %></p>
@@ -35,11 +31,7 @@
                                 <% if(user){ %> 
                                    
                                     <span class="ml-auto bookmark" data-post=<%= post._id %> >
-                                        <% if(bookmarks.includes(post._id)){ %> 
-                                            <i class="fas fa-bookmark"></i>
-                                        <% }else{%> 
-                                            <i class="far fa-bookmark"></i>
-                                        <%} %> 
+                                        <i class=" <%= bookmarks.includes(post._id) ? 'fas': 'far'  %>  fa-bookmark"></i>
                                     </span>
                                 
                                 <% } %> 

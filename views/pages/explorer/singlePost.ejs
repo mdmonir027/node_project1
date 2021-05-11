@@ -24,11 +24,7 @@
                                 
                                 <% } %> 
                         </div>
-                        <% if(post.thumbnail){ %> 
-                            <img src="<%= post.thumbnail %> " alt="<%= post.title %>" class="img-fluid">
-                        <% }else{%> 
-                            <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" class="img-fluid">
-                        <%} %> 
+                        <img src="<%= post.thumbnail || '/uploads/default-post-image.jpg' %>" alt="<%= post.title %>" class="img-fluid ">
                     </section>
                     
                     <section>

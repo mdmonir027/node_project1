@@ -9,49 +9,15 @@
             <div class="row">
                 <div class="col-md-12 my-3">
                     <div class="card card-body">
-                        <h4>My recent posts</h4>
-                            <div class="row">
-                                <% if(posts.length === 0){ %> 
-                                    <h2>No Recent posts</h2>
-                                   <% }else{ %>  
-                                       <% for(let post of posts){ %>
-                                        <div class="col-md-3">
-                                            <div class="card mb-2"> 
-                                                <% if(post.thumbnail){%> 
-                                                    <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
-                                                <% }else{ %> 
-                                                    <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" >
-                                                <%} %>
-                                                <div class="card-body">
-                                                    <a href="/post/<%=post._id %>" class="text-primary">
-                                                        <h6><%= post.title %></h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <% }  %> 
-                                   <% } %> 
-                            </div>
-                    </div>
-                    
-                    
-                </div>
-
-                <div class="col-md-12 my-3">
-                    <div class="card card-body">
-                        <h4>My Bookmarked posts</h5>
+                        <h4>My recent posts</h5>
                         <div class="row">
-                            <% if(bookmarks.length === 0){ %> 
-                                <h6 class="ml-3">You did not Bookmark any post</h2>
-                                <% }else{ %>  
-                                    <% for(let post of bookmarks){ %>
+                            <% if(posts.length === 0){ %> 
+                                <h6 class="ml-3">No Recent posts</h2>
+                            <% }else{ %>  
+                                <% for(let post of posts){ %>
                                     <div class="col-md-3">
                                         <div class="card mb-2"> 
-                                            <% if(post.thumbnail){%> 
-                                                <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
-                                            <% }else{ %> 
-                                                <img src="/uploads/default-post-image.jpg" alt="<%= post.title %>" >
-                                            <%} %>
+                                            <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
                                             <div class="card-body">
                                                 <a href="/post/<%=post._id %>" class="text-primary">
                                                     <h6><%= post.title %></h6>
@@ -59,13 +25,35 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <% }  %> 
-                                <% } %> 
+                                <% }  %> 
+                            <% } %> 
                         </div>
 
                     </div>
-                   
-                    
+                </div>
+                <div class="col-md-12 my-3">
+                    <div class="card card-body">
+                        <h4>My Bookmarked posts</h5>
+                        <div class="row">
+                            <% if(bookmarks.length === 0){ %> 
+                                <h6 class="ml-3">You did not Bookmark any post</h2>
+                            <% }else{ %>  
+                                <% for(let post of bookmarks){ %>
+                                    <div class="col-md-3">
+                                        <div class="card mb-2"> 
+                                            <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
+                                            <div class="card-body">
+                                                <a href="/post/<%=post._id %>" class="text-primary">
+                                                    <h6><%= post.title %></h6>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }  %> 
+                            <% } %> 
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

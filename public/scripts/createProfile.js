@@ -1,8 +1,8 @@
 window.onload = function () {
   const baseCropping = $('#croped-image').croppie({
     viewport: {
-      width: 200,
-      height: 200,
+      width: 250,
+      height: 250,
     },
     boundary: {
       width: 300,

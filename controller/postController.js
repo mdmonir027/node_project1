@@ -6,6 +6,7 @@ const { strToArr } = require('../utils/stringUtils');
 const readingTime = require('reading-time');
 const Profile = require('../models/Profile');
 const fs = require('fs');
+const Comments = require('../models/Comment');
 
 const controller = {};
 
@@ -163,6 +164,7 @@ controller.remove = async (req, res, next) => {
     }
 
     await Post.findOneAndDelete({ author: req.user._id, _id: id });
+
     fs.unlink(`public${post.thumbnail}`, (err) => {
       // if (err) console.log(err); // todo remove later
     });
@@ -170,6 +172,8 @@ controller.remove = async (req, res, next) => {
       { author: req.user._id, _id: id },
       { $pull: { posts: id } }
     );
+
+    // await Comments.findOneAndDelete({})
 
     res.redirect('/dashboard/posts');
   } catch (e) {
