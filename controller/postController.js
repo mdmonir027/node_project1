@@ -173,7 +173,7 @@ controller.remove = async (req, res, next) => {
       { $pull: { posts: id } }
     );
 
-    // await Comments.findOneAndDelete({})
+    await Comments.deleteMany({ post: id, user: req.user._id });
 
     res.redirect('/dashboard/posts');
   } catch (e) {
