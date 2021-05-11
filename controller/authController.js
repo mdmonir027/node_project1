@@ -109,4 +109,42 @@ controller.logout = (req, res, next) => {
   });
 };
 
+controller.editPassword = async (req, res, next) => {
+  res.render('pages/auth/changePassword.ejs', {
+    pageTitle: 'Change Password',
+    errors: {},
+    flashMessage: Flash.getMessage(req),
+  });
+};
+controller.updatePassword = async (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.render('pages/auth/changePassword.ejs', {
+      pageTitle: 'Change Password',
+      errors: errors.formatWith(errorFormatter).mapped(),
+      flashMessage: Flash.getMessage(req),
+    });
+  }
+
+  try {
+    const { oldPassword, newPassword } = req.body;
+
+    const match = await bcrypt.compare(oldPassword, req.user.password);
+    if (!match) {
+      req.flash('fail', 'Invalid old password');
+      return res.redirect('/auth/change-password');
+    }
+
+    const hash = await bcrypt.hash(newPassword, 11);
+
+    await User.findByIdAndUpdate(req.user._id, { $set: { password: hash } });
+    req.flash('success', 'Password updated Successfully!');
+    return res.redirect('/auth/change-password');
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+};
+
 module.exports = controller;
