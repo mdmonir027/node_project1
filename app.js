@@ -18,20 +18,18 @@ app.set('views', 'views');
 setMiddleware(app);
 setRoutes(app);
 
-// todo uncomment later <
-// app.use((req, res, next) => {
-//   const error = new Error('404 Not Found');
-//   error.status = 404;
-//   next(error);
-// });
+app.use((req, res, next) => {
+  const error = new Error('404 Not Found');
+  error.status = 404;
+  next(error);
+});
 
-// app.use((error, req, res, next) => {
-//   if (error.status === 404) {
-//     return res.render('pages/error/404', { flashMessage: {} });
-//   }
-//   return res.render('pages/error/505', { flashMessage: {} });
-// });
-// todo uncomment later >
+app.use((error, req, res, next) => {
+  if (error.status === 404) {
+    return res.render('pages/error/404', { flashMessage: {} });
+  }
+  return res.render('pages/error/505', { flashMessage: {} });
+});
 
 const PORT = config.get('port');
 

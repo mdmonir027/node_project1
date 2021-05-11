@@ -12,6 +12,7 @@ controller.loginGet = (req, res, next) => {
     pageTitle: 'Login Here',
     errors: {},
     flashMessage: Flash.getMessage(req),
+    email: '',
   });
 };
 
@@ -25,6 +26,7 @@ controller.loginPost = async (req, res, next) => {
       pageTitle: 'Login Here',
       errors: errors.formatWith(errorFormatter).mapped(),
       flashMessage: Flash.getMessage(req),
+      email,
     });
   }
 
@@ -35,6 +37,7 @@ controller.loginPost = async (req, res, next) => {
       return res.render('pages/auth/login', {
         pageTitle: 'Login Here',
         errors: {},
+        email,
         flashMessage: Flash.getMessage(req),
       });
     }
@@ -44,6 +47,7 @@ controller.loginPost = async (req, res, next) => {
       return res.render('pages/auth/login', {
         pageTitle: 'Login Here',
         errors: {},
+        email,
         flashMessage: Flash.getMessage(req),
       });
     }
