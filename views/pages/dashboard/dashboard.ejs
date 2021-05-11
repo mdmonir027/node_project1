@@ -17,7 +17,7 @@
                                 <% for(let post of posts){ %>
                                     <div class="col-md-3">
                                         <div class="card mb-2"> 
-                                            <img src="<%= post.thumbnail %>" alt="<%= post.title %>" class="img-fluid ">
+                                            <img src="<%= post.thumbnail || '/uploads/default-post-image.jpg' %>" alt="<%= post.title %>" class="img-fluid ">
                                             <div class="card-body">
                                                 <a href="/post/<%=post._id %>" class="text-primary">
                                                     <h6><%= post.title %></h6>

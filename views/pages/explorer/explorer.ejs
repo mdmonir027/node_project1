@@ -80,6 +80,8 @@
    </div>
   
 <%- include('../../partials/footer.ejs') %>
-<script src="/scripts/bookmarks.js"></script>
+<% if(user){ %>
+    <script src="/scripts/post.js"></script>
+<% } %> 
 </body>
 </html>
